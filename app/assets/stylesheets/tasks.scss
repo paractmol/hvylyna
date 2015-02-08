@@ -1,0 +1,38 @@
+// ce all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$inactive: #F3F3F3;
+
+ul.nav {
+  .text {
+    margin-left:10px;
+  }
+}
+
+
+#tasks {
+  .task {
+    form {
+      display:inline-block;
+      input {
+        background-color: transparent;
+        border: 0px solid;
+        border-bottom: 1px dotted black;
+        height: 20px;
+        width: 160px;
+      }
+    }
+    &.started,&.ongoing {
+      border-color: gray;
+    }
+    margin-bottom:10px;
+    padding:10px;
+    font-size: 16px;
+    border: 1px solid $inactive;
+    border-radius: 8px;
+    span.desc:hover {
+      cursor: pointer;
+      border-bottom: 1px dotted gray;
+    }
+  }
+}

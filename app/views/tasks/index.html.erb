@@ -1,0 +1,32 @@
+<%= content_for :nav do %>
+  <a href="#" data-target="#newTask" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span><span class="text">New Task</span></a>
+<% end %>
+
+<div ng-app='app.hvylynaTasks' ng-controller='TasksCtrl'>
+  <div class="container-fluid">
+    <div id="tasks">
+      <div class="task {{task.status}}" ng-repeat="task in tasks" data-id="{{task.id}}">
+        <span activated="{{task.activated}}" taskid="{{task.id}}" timetracker="{{task.time_spent}}" rate="{{task.rate}}" class="time_spent"></span><span class="glyphicon glyphicon-usd"></span>
+        <span ng-hide="editing" ng-click="editing = true" class="desc">{{ task.description  || "(no description)" }}</span>
+        <form ng-show="editing" ng-submit="editing = false; updateTask(task)">
+          <input type="text" ng-model="task.description" ng-required/>
+          <input type="text" class="rate" placeholder="0.0" ng-model="task.rate">
+          <button class="btn btn-default" type="submit">Save</button>
+        </form>
+        <span ng-switch on="task.status">
+          <a class="btn btn-default" href="#" ng-switch-when="unstarted" ng-click="changeStatus(task.id,'started')"><span class="glyphicon glyphicon-play"></span></a>
+          <a class="btn btn-default" href="#" ng-switch-when="finished" ng-click="changeStatus(task.id,'started')"><span class="glyphicon glyphicon-repeat"></span></a>
+          <a class="btn btn-default" href="#" ng-switch-when="paused" ng-click="changeStatus(task.id,'ongoing')"><span class="glyphicon glyphicon-play"></span></a>
+          <a class="btn btn-default" href="#" ng-switch-default ng-click="changeStatus(task.id,'paused')"><span class="glyphicon glyphicon-pause"></span></a>
+          <a class="btn btn-default" href="#" ng-switch-default ng-click="changeStatus(task.id,'finished')"><span class="glyphicon glyphicon-stop"></span></a>
+        </span>
+        <span class="btn btn-default" ng-click="destroyTask(task)">
+          <span class="glyphicon glyphicon-trash"></span>
+        </span>
+      </div>
+    </div>
+
+    <%= render "new" %>
+  </div>
+</div>
+

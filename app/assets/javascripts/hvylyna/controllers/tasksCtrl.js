@@ -63,7 +63,7 @@ angular.module('app.hvylynaTasks').controller("TasksCtrl", [
       var addLeadingZero = function(time){
         return ("0" + time).slice(-2)
       }
-      return addLeadingZero(Math.floor(ts/3600)) + ':' + addLeadingZero(Math.floor(ts/60)) + ":" + addLeadingZero(ts%60)
+      return addLeadingZero(Math.floor(ts/3600)) + ':' + addLeadingZero(Math.floor(ts/60)%60) + ":" + addLeadingZero(ts%60)
     }
 
     var timeTracker = function(){

@@ -6,13 +6,27 @@
   <div class="container-fluid">
     <div id="tasks">
       <div class="task {{task.status}}" ng-repeat="task in tasks" data-id="{{task.id}}">
-        <span activated="{{task.activated}}" taskid="{{task.id}}" timetracker="{{task.time_spent}}" rate="{{task.rate}}" class="time_spent"></span><span class="glyphicon glyphicon-usd"></span>
-        <span ng-hide="editing" ng-click="editing = true" class="desc">{{ task.description  || "(no description)" }}</span>
-        <form ng-show="editing" ng-submit="editing = false; updateTask(task)">
-          <input type="text" ng-model="task.description" ng-required/>
-          <input type="text" class="rate" placeholder="0.0" ng-model="task.rate">
-          <button class="btn btn-default" type="submit">Save</button>
-        </form>
+        <div class="col-xs-1">
+          <span activated="{{task.activated}}" taskid="{{task.id}}" timetracker="{{task.time_spent}}" rate="{{task.rate}}" hiderate="true" class="time_spent"></span>
+        </div>
+        <div class="col-xs-8">
+          <span ng-hide="editing" ng-click="editing = true" class="desc">{{ task.description  || "(no description)" }}</span>
+          <form ng-show="editing" ng-submit="editing = false; updateTask(task)" class="wide">
+            <input type="text" ng-model="task.description" ng-required class="wide"/>
+            <button class="btn btn-default" type="submit" style="display:none">Save</button>
+          </form>
+
+        </div>
+        <div class="col-xs-1">
+          <span ng-hide="edit_rate" ng-click="edit_rate = true" activated="{{task.activated}}" taskid="{{task.id}}" timetracker="{{task.time_spent}}" hidetime="true" rate="{{task.rate}}" class="rate"></span>
+           <form ng-show="edit_rate" ng-submit="edit_rate = false; updateTask(task)">
+            <input type="text" class="rate" placeholder="0.0" ng-model="task.rate" style="width: 60px">
+            <button class="btn btn-default" type="submit" style="display:none">Save</button>
+          </form>
+          <span class="glyphicon glyphicon-usd"></span>
+        </div>
+
+
         <span ng-switch on="task.status">
           <a class="btn btn-default" href="#" ng-switch-when="unstarted" ng-click="changeStatus(task.id,'started')"><span class="glyphicon glyphicon-play"></span></a>
           <a class="btn btn-default" href="#" ng-switch-when="finished" ng-click="changeStatus(task.id,'started')"><span class="glyphicon glyphicon-repeat"></span></a>

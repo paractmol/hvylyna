@@ -67,7 +67,10 @@ angular.module('app.hvylynaTasks').controller("TasksCtrl", [
     }
 
     var timeTracker = function(){
-      return element.text(timeSpentToMinutes(attrs.timetracker)+' '+rate())
+      var s = '';
+      if(attrs.hidetime != 'true') s = s.concat(timeSpentToMinutes(attrs.timetracker) + ' ')
+      if(attrs.hiderate != 'true') s = s.concat(rate())
+      return element.text(s)
     }
     
     timeTracker();

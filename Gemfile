@@ -48,3 +48,6 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'pry'
+gem 'pry-byebug'
+gem 'awesome_print'

@@ -41,6 +41,7 @@ GEM
       sprockets
       tilt
     arel (6.0.0)
+    awesome_print (1.6.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bower-rails (0.9.2)
@@ -49,6 +50,7 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    coderay (1.1.0)
     columnize (0.9.0)
     commonjs (0.2.7)
     debug_inspector (0.0.2)
@@ -73,12 +75,20 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.0.1)
+      byebug (~> 3.4)
+      pry (~> 0.10)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -153,10 +163,13 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
+  awesome_print
   bower-rails (~> 0.9.1)
   byebug
   jbuilder (~> 2.0)
   less-rails
+  pry
+  pry-byebug
   rails (= 4.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

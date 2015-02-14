@@ -3,7 +3,7 @@ class Task < ActiveRecord::Base
   enum status: [:unstarted, :started, :paused, :ongoing, :finished]
   before_save :set_dates, :set_time_spent
 
-  default_scope { order('created_at DESC') }
+  default_scope { order('created_at DESC') } 
   
   def activated
     ["started", "ongoing"].include?(status)
@@ -29,7 +29,7 @@ class Task < ActiveRecord::Base
     ts = read_attribute(:time_spent) if ["paused","ongoing"].include? status
     ts = ts + (finished.to_i - started.to_i) if finished.to_i > started.to_i
 
-    update_column(:time_spent, ts)
+    self.time_spent = ts
   end
 
   def set_dates
@@ -41,6 +41,6 @@ class Task < ActiveRecord::Base
       "finished"
     end
 
-    update_column(column.to_sym, Time.now)
+    self.send("#{column}=", Time.now)
   end
 end

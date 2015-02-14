@@ -26,7 +26,7 @@ class Task < ActiveRecord::Base
   def set_time_spent
     return if new_record? || !status_changed?
     ts = 0
-    ts = read_attribute(:time_spent) if ["paused","ongoing"].include? status
+    ts = read_attribute(:time_spent) if ["paused","ongoing","finished"].include? status
     ts = ts + (finished.to_i - started.to_i) if finished.to_i > started.to_i
 
     self.time_spent = ts
